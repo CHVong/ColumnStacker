@@ -54,6 +54,8 @@ input:hover{
     padding: 1rem; */
 }
 .info-container{
+    display: flex;
+    flex-direction: row;
     top: 5rem;
 }
 .leaderboard-container{
@@ -78,17 +80,26 @@ body div{
 }
 
 #text-box {
-    display: none; /* hide the text box by default */
-    position: absolute;
+    position: relative;
     z-index: 2;
-    top: 50px; /* or any other position you want */
-    left: 50px; /* or any other position you want */
-    background: white;
+    width: 20vw;
+    background: rgba(0,0,0,0.3);
     padding: 10px;
-    border: 1px solid black;
-    pointer-events: all; /* make the text box selectable and interactive */ /* set the text box to be hidden by default */
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    pointer-events: all; /* make the text box selectable and interactive */
+    display: none;
   }
   
-  button:hover + #text-box, button:focus + #text-box {
-    display: block; /* show the text box when the button is hovered over */
-  }
+button:hover + #text-box{
+display: block;
+}
+
+.show{
+    display: block !important;
+}
+
+.active{
+    background: rgba(0,0,0,0.3);
+}

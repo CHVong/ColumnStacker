@@ -34,10 +34,16 @@ gradient.addColorStop(0, "rgb(72,210,248, 0.8)");
 gradient.addColorStop(0.5, "rgb(11,65,46, 0.8)");
 // -----------------------------------------------------------------------------
 
+const randomLeftOrRight = (left,right) => {
+  let num = Math.round(Math.random())
+  if(num===1){
+    return right
+  } else return left
+}
 
 function newBox() {
   boxes[current] = {
-    x: 0,
+    x: randomLeftOrRight(0,(canvas.width - boxes[current - 1].width)),
     y: (current+1) * height,
     width: boxes[current - 1].width
   };
@@ -179,3 +185,26 @@ function playMusic(){
   }
 }
 
+
+let infoButton = document.querySelector('.info')
+let textBox = document.getElementById("text-box")
+infoButton.addEventListener("click", function () {
+  textBox.classList.toggle("show");
+  infoButton.classList.toggle("active")
+  infoButton.style.scale = '85%'
+    setTimeout(function () {
+      infoButton.style.removeProperty('scale')
+  }, 100);
+});
+
+// infoButton.addEventListener("mouseover", function () {
+//   textBox.classList.remove("hidden");
+// });
+
+// textBox.addEventListener("mouseout", function () {
+//   textBox.classList.add("hidden");
+// });
+
+// textBox.addEventListener("click", function () {
+//   textBox.classList.add("hidden");
+// });
