@@ -62,7 +62,7 @@ function animate() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.font = 'bold 40px "Varela Round", sans-serif';
     context.fillStyle = '#22E68D';
-    context.strokeStyle = "black";
+    context.strokeStyle = "rgb(44, 45, 45)";
     context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
     context.lineWidth = 0.1;
     context.strokeText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);

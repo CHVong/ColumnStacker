@@ -103,3 +103,10 @@ display: block;
 .active{
     background: rgba(0,0,0,0.5) !important;
 }
+
+a, a:visited{
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+
+}
