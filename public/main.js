@@ -51,23 +51,31 @@ function newBox() {
  
 function gameOver() {
   mode = 'gameOver';
+  context.font = 'bold 30px "Varela Round", sans-serif';
   context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
+
   context.textAlign = "center";
 }
  
 function animate() {
   if (mode != 'gameOver') {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.font = 'bold 25px "Varela Round", sans-serif';
+    context.font = 'bold 40px "Varela Round", sans-serif';
+    context.fillStyle = '#22E68D';
+    context.strokeStyle = "black";
     context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
+    context.lineWidth = 0.1;
+    context.strokeText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
     context.textAlign = "center";
     for (let n = 0; n < boxes.length; n++) {
       let box = boxes[n];
       context.fillStyle = gradient;//'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')'; style this for changing color with each box
       context.strokeStyle = 'white';
+      context.lineWidth = 1;
       context.fillRect(box.x, 600 - box.y + cameraY, box.width, height);
       context.strokeRect(box.x, 600 - box.y + cameraY, box.width, height);
     }
+    
     context.fillStyle = 'red';
     context.fillRect(debris.x, 600 - debris.y + cameraY, debris.width, height);
     if (mode == 'bounce') {
