@@ -237,3 +237,27 @@ closeLeaderboard.addEventListener('click', closeBoard)
 function closeBoard (){
   gameoverContainer.style.display = 'none'
 }
+
+
+// FORM SUBMISSION
+
+document.querySelector("form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const userName = document.querySelector("input[name='name']").value;
+  const score = current-2;
+  const data = { userName, score };
+
+  fetch("/leaderboard", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      // handle the response from the server here
+    })
+    .catch(error => {
+      // handle any errors here
+    });
+});
