@@ -32,3 +32,10 @@ button:hover{
     scale: 95%;
     transition: all 0.1s ease-in-out;
 }
+
+input{
+    position: absolute;
+    z-index: 1;
+    top: 1rem;
+    left: 1rem;
+}

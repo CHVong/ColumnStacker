@@ -131,3 +131,27 @@ canvas.onpointerdown = function(event) {
  
 restart();
 animate();
+
+
+// Music
+
+let volumn = document.querySelector('.volumn')
+volumn.addEventListener('click', playMusic)
+
+let volumeSlider = document.getElementById("volume-slider");
+volumeSlider.addEventListener("input", adjustVolume);
+
+let audio = new Audio("assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
+audio.loop = true // if you want the music to loop
+
+function adjustVolume() {
+  audio.volume = volumeSlider.value;
+}
+
+function playMusic(){
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
