@@ -58,7 +58,9 @@ function animate() {
     for (let n = 0; n < boxes.length; n++) {
       let box = boxes[n];
       context.fillStyle = gradient;//'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')'; style this for changing color with each box
+      context.strokeStyle = 'white';
       context.fillRect(box.x, 600 - box.y + cameraY, box.width, height);
+      context.strokeRect(box.x, 600 - box.y + cameraY, box.width, height);
     }
     context.fillStyle = 'red';
     context.fillRect(debris.x, 600 - debris.y + cameraY, debris.width, height);
@@ -143,6 +145,8 @@ volumeSlider.addEventListener("input", adjustVolume);
 
 let audio = new Audio("assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
 audio.loop = true // if you want the music to loop
+
+audio.volume = 0.3
 
 function adjustVolume() {
   audio.volume = volumeSlider.value;
