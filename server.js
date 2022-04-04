@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 const LeaderboardModel = require('./models/leaderboardmodel');
 require('dotenv').config()
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8050
 
 mongoose.connect(
      process.env.DB_CONNECTION, 
