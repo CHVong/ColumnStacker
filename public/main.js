@@ -293,6 +293,9 @@ function openLeaderboard(){
       leaderboardTable.innerHTML = '';
       // document.querySelector('.leaderboard tbody').innerHTML = ''
     entries.forEach((entry, index) => {
+      if (index >= 10) {
+        return;
+      }
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${index + 1}</td>
