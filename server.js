@@ -24,8 +24,6 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 
-
-
 app.get('/', async (request, response) => {
   try {
     LeaderboardModel.find({})
@@ -37,9 +35,9 @@ app.get('/', async (request, response) => {
       }
       response.render("index.ejs", { entries });
     });
-    } catch (error) {
-        response.status(500).send({message: error.message})
-    }
+  } catch (error) {
+    response.status(500).send({message: error.message})
+  }
 })
 
 app.post('/leaderboard', (req, res) => {
@@ -69,7 +67,6 @@ app.get("/leaderboard", (req, res) => {
     });
 });
 
-  
 //PORT = 8050
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

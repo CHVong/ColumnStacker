@@ -220,9 +220,8 @@ tbody tr{
     border-radius: 5px;
     text-align: center;
     display: none;
-    height: 300px;
-    max-height: 350px;
-    min-height: 300px;
+    max-height: 325px;
+    min-height: 250px;
 }
 
 .close-leaderboard{
@@ -245,4 +244,7 @@ form{
 
 .submitted{
     display: none;
+    margin: 2rem;
 }
+
+

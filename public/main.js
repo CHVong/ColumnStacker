@@ -25,7 +25,7 @@ window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
 // gradient color background 
-let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+const gradient = context.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop(0, "rgb(72,210,248, 0.8)");
 gradient.addColorStop(0.5, "rgb(11,65,46, 0.8)");
 
@@ -156,9 +156,9 @@ animate();
 
 
 // MUSIC
-let volumeButton = document.querySelector('.volume')
-let volumeSymbol = document.getElementById("volumeSymbol");
-let volumeSlider = document.getElementById("volume-slider");
+const volumeButton = document.querySelector('.volume')
+const volumeSymbol = document.getElementById("volumeSymbol");
+const volumeSlider = document.getElementById("volume-slider");
 
 volumeSlider.addEventListener("input", adjustVolume);
 volumeButton.addEventListener('click', playMusic)
@@ -196,8 +196,8 @@ function playMusic(){
 }
 
 // Toggle show/hide/active to smooth out navigation buttons
-let infoButton = document.querySelector('.info')
-let textBox = document.getElementById("text-box")
+const infoButton = document.querySelector('.info')
+const textBox = document.getElementById("text-box")
 infoButton.addEventListener("click", () => {
   textBox.classList.toggle("show");
   infoButton.classList.toggle("active")
@@ -208,9 +208,9 @@ infoButton.addEventListener("click", () => {
 });
 
 // Game over screen
-let gameoverContainer = document.querySelector('.gameover-container')
-let closeLeaderboard = document.querySelector('.close-leaderboard')
-let score = document.querySelector('.score')
+const gameoverContainer = document.querySelector('.gameover-container')
+const closeLeaderboard = document.querySelector('.close-leaderboard')
+const score = document.querySelector('.score')
 
 closeLeaderboard.addEventListener('click', closeBoard)
 
@@ -220,9 +220,9 @@ function closeBoard (){
 
 
 // Form submission - name input to server to database
-let form = document.querySelector('form')
-let nameInput = document.querySelector("input[name='name']")
-let submitted = document.querySelector('.submitted')
+const form = document.querySelector('form')
+const nameInput = document.querySelector("input[name='name']")
+const submitted = document.querySelector('.submitted')
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -249,12 +249,24 @@ form.addEventListener("submit", (event) => {
 });
 
 // Leaderboard screen
-let leaderboardContainer = document.querySelector('.leaderboard-container2')
-let leaderboardButton = document.querySelector('.leaderboardButton')
+const leaderboardContainer = document.querySelector('.leaderboard-container2')
+const leaderboardButton = document.querySelector('.leaderboardButton')
 
 leaderboardButton.addEventListener('click', openLeaderboard)
 
+
+
 function openLeaderboard(){
+  if (leaderboardButton.classList.contains("active")) {
+    leaderboardContainer.classList.toggle("showFlex");
+    leaderboardButton.classList.toggle("active")
+    leaderboardButton.style.scale = '85%'
+    setTimeout(() => {
+      leaderboardButton.style.removeProperty('scale')
+    }, 100);
+    return
+  }
+
   fetch("/leaderboard")
   .then(response => {
     if (!response.ok) {
@@ -290,4 +302,20 @@ function openLeaderboard(){
   .catch(error => {
     console.error("There was a problem with the fetch operation:", error);
   });
+}
+
+// Pagination fetches
+const previousButton = document.querySelector(".previous");
+// previousButton.style.display = currentPage > 1 ? "inline" : "none";
+const nextButton = document.querySelector(".next");
+// nextButton.style.display = currentPage < totalPages ? "inline" : "none";
+const pageButtons = document.getElementsByClassName("page");
+
+const itemsPerPage = 10;
+const totalPages = Math.ceil(items.length / itemsPerPage);
+const maxPages = 10;
+const currentPage = 1;
+
+function getPage(){
+
 }
