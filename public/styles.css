@@ -54,6 +54,7 @@ input{
 
 .nameSubmission{
     cursor: pointer;
+    opacity: 100%;
 }
 
 /* .volume-container{

@@ -1,39 +1,35 @@
+// CANVAS
 let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 let scrollCounter, cameraY, current, mode, xSpeed;
 let ySpeed = 5;
 let height = 50;
 let boxes = [];
-
-
-
 let debris = {
   x: 0,
   width: 0
 };
 
-// Set responsive screen size --------------------------------------------------
+// Canvas responsive screen size
 function resizeCanvas() {
   context.canvas.width = window.innerWidth;
   context.canvas.height = window.innerHeight;
   context.font = 'bold 25px "Varela Round", sans-serif';
   boxes[0] = {
-      x: (canvas.width / 2) - (canvas.width /4), //200 is the width of the box
+      x: (canvas.width / 2) - (canvas.width /4),
       y: 0,
       width: (canvas.width / 2)
     };
 }
 window.addEventListener("resize", resizeCanvas);
-// Call the function initially to set the canvas size on page load
 resizeCanvas();
-// -----------------------------------------------------------------------------
 
-// GRADIENT --------------------------------------------------------------------
+// gradient color background 
 let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop(0, "rgb(72,210,248, 0.8)");
 gradient.addColorStop(0.5, "rgb(11,65,46, 0.8)");
-// -----------------------------------------------------------------------------
 
+// Helper function for blocks to randomly appear left or right
 const randomLeftOrRight = (left,right) => {
   let num = Math.round(Math.random())
   if(num===1){
@@ -56,11 +52,10 @@ function gameOver() {
   context.font = 'bold 30px "Varela Round", sans-serif';
   // context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
   context.textAlign = "center";
-  
 }
  
 function animate() {
-  
+
   if (mode != 'gameOver') {
     
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -142,8 +137,8 @@ function restart() {
   debris.width = 0;
 }
  
-canvas.onpointerdown = function(event) {
-  if(event.button!==2){
+canvas.onpointerdown = (event) => {
+  if(event.button!==2){ //set for left clicks
     if (mode == 'gameOver'){
       gameoverContainer.style.display = 'none'
       restart();
@@ -160,19 +155,16 @@ restart();
 animate();
 
 
-// Music
-
+// MUSIC
 let volumeButton = document.querySelector('.volume')
+let volumeSymbol = document.getElementById("volumeSymbol");
+let volumeSlider = document.getElementById("volume-slider");
+
+volumeSlider.addEventListener("input", adjustVolume);
 volumeButton.addEventListener('click', playMusic)
 
-let volumeSymbol = document.getElementById("volumeSymbol");
-
-let volumeSlider = document.getElementById("volume-slider");
-volumeSlider.addEventListener("input", adjustVolume);
-
 let audio = new Audio("./assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
-audio.loop = true // if you want the music to loop
-
+audio.loop = true // set for music to loop
 audio.volume = 0.20
 
 function adjustVolume() {
@@ -184,18 +176,17 @@ function playMusic(){
     volumeSlider.classList.remove('hidden');
     volumeSymbol.className = "fa-solid fa-volume-high fa-xl";
     volumeButton.style.scale = '85%'
-    setTimeout(function () {
+    setTimeout(() => {
       volumeButton.style.removeProperty('scale')
-  }, 100);
-  }else{
+    }, 100);
+  } else {
     volumeSlider.classList.add('hidden');
     volumeSymbol.className = "fa-solid fa-volume-xmark fa-xl";
     volumeButton.style.scale = '85%'
-    setTimeout(function () {
+    setTimeout(() => {
       volumeButton.style.removeProperty('scale')
-  }, 100);
+    }, 100);
   }
-
 
   if (audio.paused) {
     audio.play();
@@ -204,30 +195,19 @@ function playMusic(){
   }
 }
 
-
+// Toggle show/hide/active to smooth out navigation buttons
 let infoButton = document.querySelector('.info')
 let textBox = document.getElementById("text-box")
-infoButton.addEventListener("click", function () {
+infoButton.addEventListener("click", () => {
   textBox.classList.toggle("show");
   infoButton.classList.toggle("active")
   infoButton.style.scale = '85%'
-    setTimeout(function () {
+    setTimeout(() => {
       infoButton.style.removeProperty('scale')
   }, 100);
 });
 
-// infoButton.addEventListener("mouseover", function () {
-//   textBox.classList.remove("hidden");
-// });
-
-// textBox.addEventListener("mouseout", function () {
-//   textBox.classList.add("hidden");
-// });
-
-// textBox.addEventListener("click", function () {
-//   textBox.classList.add("hidden");
-// });
-
+// Game over screen
 let gameoverContainer = document.querySelector('.gameover-container')
 let closeLeaderboard = document.querySelector('.close-leaderboard')
 let score = document.querySelector('.score')
@@ -239,11 +219,14 @@ function closeBoard (){
 }
 
 
-// FORM SUBMISSION
+// Form submission - name input to server to database
+let form = document.querySelector('form')
+let nameInput = document.querySelector("input[name='name']")
+let submitted = document.querySelector('.submitted')
 
-document.querySelector("form").addEventListener("submit", function(event) {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const userName = document.querySelector("input[name='name']").value;
+  const userName = nameInput.value;
   const score = current-2;
   const data = { userName, score };
 
@@ -254,30 +237,24 @@ document.querySelector("form").addEventListener("submit", function(event) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => {
-      // handle the response from the server here
-      form.style.display = 'none'
-      submitted.style.display ='block'
-      
-    })
-    .catch(error => {
-      // handle any errors here
-    });
+  .then(response => {
+    // handle the response from the server here
+    form.style.display = 'none'
+    submitted.style.display ='block'
+  })
+  .catch(error => {
+    // handle any errors here
+    console.log(error)
+  });
 });
 
-
-let submitted = document.querySelector('.submitted')
-
-let form = document.querySelector('form')
-
+// Leaderboard screen
 let leaderboardContainer = document.querySelector('.leaderboard-container2')
-
 let leaderboardButton = document.querySelector('.leaderboardButton')
 
 leaderboardButton.addEventListener('click', openLeaderboard)
 
 function openLeaderboard(){
-
   fetch("/leaderboard")
   .then(response => {
     if (!response.ok) {
@@ -287,34 +264,30 @@ function openLeaderboard(){
   })
   .then(result => {
     const entries = result.entries;
-
-    
-      const leaderboardTable = document.querySelector('.leaderboard tbody');
-      leaderboardTable.innerHTML = '';
-      // document.querySelector('.leaderboard tbody').innerHTML = ''
+    const leaderboardTable = document.querySelector('.leaderboard tbody');
+    leaderboardTable.innerHTML = '';
     entries.forEach((entry, index) => {
       if (index >= 10) {
         return;
       }
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${entry.userName}</td>
-            <td>${entry.score}</td>
-        `;
-        leaderboardTable.appendChild(tr);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${entry.userName}</td>
+          <td>${entry.score}</td>
+      `;
+      leaderboardTable.appendChild(tr);
     });
 
     leaderboardContainer.classList.toggle("showFlex");
-  leaderboardButton.classList.toggle("active")
-  leaderboardButton.style.scale = '85%'
-    setTimeout(function () {
+    leaderboardButton.classList.toggle("active")
+    leaderboardButton.style.scale = '85%'
+    setTimeout(() => {
       leaderboardButton.style.removeProperty('scale')
-  }, 100);
+    }, 100);
     // console.log(entries);
   })
   .catch(error => {
     console.error("There was a problem with the fetch operation:", error);
   });
-  
 }

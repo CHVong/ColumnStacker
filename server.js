@@ -43,19 +43,19 @@ app.get('/', async (request, response) => {
 })
 
 app.post('/leaderboard', (req, res) => {
-    const leaderboard = new LeaderboardModel({
-      userName: req.body.userName,
-      score: req.body.score
-    });
-  
-    leaderboard.save()
-      .then(result => {
-        res.send(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const leaderboard = new LeaderboardModel({
+    userName: req.body.userName,
+    score: req.body.score
   });
+
+  return leaderboard.save()
+    .then(result => {
+      res.send(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
 
 app.get("/leaderboard", (req, res) => {
   LeaderboardModel.find({})
