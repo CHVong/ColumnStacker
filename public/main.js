@@ -254,7 +254,7 @@ const leaderboardButton = document.querySelector('.leaderboardButton')
 
 leaderboardButton.addEventListener('click', openLeaderboard)
 
-
+let page = currentPage
 
 function openLeaderboard(){
   if (leaderboardButton.classList.contains("active")) {
@@ -267,30 +267,8 @@ function openLeaderboard(){
     return
   }
 
-  fetch("/leaderboard")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then(result => {
-    const entries = result.entries;
-    const leaderboardTable = document.querySelector('.leaderboard tbody');
-    leaderboardTable.innerHTML = '';
-    entries.forEach((entry, index) => {
-      if (index >= 10) {
-        return;
-      }
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${entry.userName}</td>
-          <td>${entry.score}</td>
-      `;
-      leaderboardTable.appendChild(tr);
-    });
-
+  fetchList(currentPage)
+  
     leaderboardContainer.classList.toggle("showFlex");
     leaderboardButton.classList.toggle("active")
     leaderboardButton.style.scale = '85%'
@@ -298,10 +276,8 @@ function openLeaderboard(){
       leaderboardButton.style.removeProperty('scale')
     }, 100);
     // console.log(entries);
-  })
-  .catch(error => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
+  
+  
 }
 
 // Pagination fetches
@@ -335,6 +311,8 @@ var currentPage = 1;
 
 // place this before update to get the correct page number
 const paginationButtons = document.querySelectorAll('.pagination')
+
+
 
 for (let i = 0; i < paginationButtons.length; i++) {
   paginationButtons[i].addEventListener("click", () => {
@@ -428,8 +406,8 @@ updateDisplay();
 
 
 
-function fetchList (page) {
-  fetch(`/leaderboard/${page}`)
+function fetchList (currentPage) {
+  fetch(`/leaderboard/${currentPage}`)
   .then(response => {
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -446,7 +424,7 @@ function fetchList (page) {
       }
       const tr = document.createElement('tr');
       tr.innerHTML = `
-          <td>${index + 1}</td>
+          <td>${currentPage>1?(currentPage-1)*10 + index+1:index+1}</td>
           <td>${entry.userName}</td>
           <td>${entry.score}</td>
       `;
