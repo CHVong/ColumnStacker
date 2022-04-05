@@ -17,6 +17,18 @@
 button{
     position: absolute;
     z-index: 1;
-    top: 0;
-    left: 0;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+    border-color: rgba(255,255,255,0.35);
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover{
+    background: rgba(0,0,0,0.3);
+    cursor: pointer;
+    scale: 95%;
+    transition: all 0.1s ease-in-out;
 }
