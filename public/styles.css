@@ -10,9 +10,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("./assets/illiyardMoor-IlliardFieldEdgeFromYoutube.PNG");
+    background-image: url("./assets/background.PNG");
     background-size: cover;
-    background-position: center center;
+    background-position: center left;
 }
 
 button{
@@ -76,3 +76,19 @@ body div{
     display: inline-block;
     padding: 1rem;
 }
+
+#text-box {
+    display: none; /* hide the text box by default */
+    position: absolute;
+    z-index: 2;
+    top: 50px; /* or any other position you want */
+    left: 50px; /* or any other position you want */
+    background: white;
+    padding: 10px;
+    border: 1px solid black;
+    pointer-events: all; /* make the text box selectable and interactive */ /* set the text box to be hidden by default */
+  }
+  
+  button:hover + #text-box, button:focus + #text-box {
+    display: block; /* show the text box when the button is hovered over */
+  }
