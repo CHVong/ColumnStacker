@@ -16,7 +16,7 @@ let debris = {
 function resizeCanvas() {
   context.canvas.width = window.innerWidth;
   context.canvas.height = window.innerHeight;
-  context.font = 'bold 100px sans-serif';
+  context.font = 'bold 30px "Varela Round", sans-serif';
   boxes[0] = {
       x: (canvas.width / 2) - (canvas.width /4), //200 is the width of the box
       y: 0,
@@ -52,7 +52,7 @@ function gameOver() {
 function animate() {
   if (mode != 'gameOver') {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.font = 'bold 30px sans-serif';
+    context.font = 'bold 30px "Varela Round", sans-serif';
     context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, 200);
     context.textAlign = "center";
     for (let n = 0; n < boxes.length; n++) {
@@ -148,7 +148,7 @@ volumeSlider.addEventListener("input", adjustVolume);
 let audio = new Audio("./assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
 audio.loop = true // if you want the music to loop
 
-audio.volume = 0.3
+audio.volume = 0.25
 
 function adjustVolume() {
   audio.volume = volumeSlider.value;

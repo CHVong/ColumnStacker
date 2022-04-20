@@ -1,6 +1,7 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
 }
 
 #myCanvas {
@@ -47,12 +48,18 @@ input:hover{
 }
 
 .volume-container{
-    position: relative;
+    /* position: relative;
     z-index: 1;
     display: inline-block;
-    padding: 1rem;
+    padding: 1rem; */
 }
-
+.info-container{
+    top: 5rem;
+}
+.leaderboard-container{
+    top: 10rem;
+    left: 0;
+}
 .hidden{
     opacity: 0;
     visibility: hidden;
@@ -60,3 +67,12 @@ input:hover{
 }
 
 button:active { border-style: outset;}
+
+
+
+body div{
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    padding: 1rem;
+}
