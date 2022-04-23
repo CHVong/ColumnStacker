@@ -137,13 +137,15 @@ animate();
 
 // Music
 
-let volumn = document.querySelector('.volumn')
-volumn.addEventListener('click', playMusic)
+let volumeButton = document.querySelector('.volume')
+volumeButton.addEventListener('click', playMusic)
+
+let volumeSymbol = document.getElementById("volumeSymbol");
 
 let volumeSlider = document.getElementById("volume-slider");
 volumeSlider.addEventListener("input", adjustVolume);
 
-let audio = new Audio("assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
+let audio = new Audio("./assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
 audio.loop = true // if you want the music to loop
 
 audio.volume = 0.3
@@ -153,9 +155,27 @@ function adjustVolume() {
 }
 
 function playMusic(){
+  if(volumeSlider.classList.contains('hidden')){
+    volumeSlider.classList.remove('hidden');
+    volumeSymbol.className = "fa-solid fa-volume-high fa-xl";
+    volumeButton.style.scale = '85%'
+    setTimeout(function () {
+      volumeButton.style.removeProperty('scale')
+  }, 100);
+  }else{
+    volumeSlider.classList.add('hidden');
+    volumeSymbol.className = "fa-solid fa-volume-xmark fa-xl";
+    volumeButton.style.scale = '85%'
+    setTimeout(function () {
+      volumeButton.style.removeProperty('scale')
+  }, 100);
+  }
+
+
   if (audio.paused) {
     audio.play();
   } else {
     audio.pause();
   }
 }
+
