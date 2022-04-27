@@ -4,7 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 const Filter = require('bad-words');
-const LeaderboardModel = require('./models/leaderboardmodel');
+const LeaderboardModel = require('./models/leaderboardModel');
 require('dotenv').config()
 const PORT = process.env.PORT || 8050
 
