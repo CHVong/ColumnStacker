@@ -1,3 +1,7 @@
+:root {
+  --primary-color: #add8f5;
+}
+
 *{
     margin: 0;
     box-sizing: border-box;
@@ -41,6 +45,9 @@ input{
     opacity: 50%;
     transition: all 2s ease-out;
     font-family: 'Varela Round', sans-serif;
+    outline: none;
+    padding: 0.25rem;
+    border-radius: 4px;
 }
 
 .slider:hover{
@@ -50,11 +57,31 @@ input{
 
 #name{
     opacity: 1;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-color);
+    background: black;
+    color: white;
+}
+
+#name::placeholder {
+  color: #cacaca;
+  font-style: italic;
 }
 
 .nameSubmission{
     cursor: pointer;
     opacity: 100%;
+    transition: all 0.2s ease-out;
+    border: 2px solid var(--primary-color);;
+    background-color: black;
+    color: var(--primary-color);;
+}
+
+.nameSubmission:hover{
+  background-color: #2E8B57;
+  color: white;
+  border-color: #f4f4f4;
+  transition: all 0.2s ease-in;
 }
 
 /* .volume-container{
@@ -94,7 +121,7 @@ body div{
     position: relative;
     z-index: 2;
     width: 20vw;
-    color: lightblue;
+    color: var(--primary-color);;
     background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
     padding: 10px;
     margin-left: 10px;
@@ -179,10 +206,10 @@ a, a:visited{
   margin-top: 20px;
 }
 tbody tr{
-    color: lightblue;
+    color: var(--primary-color);;
 }
 .paginationContainer a {
-  color: lightblue;
+  color: var(--primary-color);;
   float: left;
   padding: 0.5rem;
   text-decoration: none;
@@ -206,7 +233,7 @@ tbody tr{
 /* GAMEOVER */
 
 .gameover-container{
-    color: lightblue;
+    color: var(--primary-color);;
     padding: 1rem;
     max-width: 500px;
     min-width: 300px;
@@ -237,6 +264,7 @@ tbody tr{
 .close-leaderboard i:hover{
     scale: 90%;
     transition: all 0.2s ease;
+    color: #FF6347;
 }
 
 form{

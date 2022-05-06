@@ -44,9 +44,7 @@ app.get('/', async (request, response) => {
 app.post('/leaderboard', async (req, res) => {
   const filter = new Filter();
   const filteredUserName = filter.clean(req.body.userName)
-  console.log(req.body.userName)
-  console.log(filter.clean(req.body.userName))
-
+  
   const leaderboard = new LeaderboardModel({
     userName: filteredUserName,
     score: req.body.score
