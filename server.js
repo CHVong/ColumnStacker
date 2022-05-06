@@ -40,32 +40,32 @@ app.get('/', async (request, response) => {
   }
 })
 
-// app.post('/leaderboard', (req, res) => {
-//   const leaderboard = new LeaderboardModel({
-//     userName: req.body.userName,
-//     score: req.body.score
-//   });
+app.post('/leaderboard', (req, res) => {
+  const leaderboard = new LeaderboardModel({
+    userName: req.body.userName,
+    score: req.body.score
+  });
 
-//   return leaderboard.save()
-//     .then(result => {
-//       res.send(result);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// });
-
-app.get("/leaderboard", (req, res) => {
-  LeaderboardModel.find({})
-    .sort({ score: -1 })
-    .exec((err, entries) => {
-      if (err) {
-        console.error(err);
-        return res.sendStatus(500);
-      }
-      res.json({ entries });
+  return leaderboard.save()
+    .then(result => {
+      res.send(result);
+    })
+    .catch(error => {
+      console.log(error);
     });
 });
+
+// app.get("/leaderboard", (req, res) => {
+//   LeaderboardModel.find({})
+//     .sort({ score: -1 })
+//     .exec((err, entries) => {
+//       if (err) {
+//         console.error(err);
+//         return res.sendStatus(500);
+//       }
+//       res.json({ entries });
+//     });
+// });
 
 app.get("/leaderboard/:page", (req, res) => {
   const page = parseInt(req.params.page) || 1;
