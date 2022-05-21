@@ -237,7 +237,7 @@ tbody tr{
 /* GAMEOVER */
 
 .gameover-container{
-  color: var(--primary-color);;
+  color: var(--primary-color);
   padding: 1rem;
   max-width: 500px;
   min-width: 300px;

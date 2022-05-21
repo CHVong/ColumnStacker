@@ -209,7 +209,7 @@ infoButton.addEventListener("click", () => {
   }, 100);
 });
 
-// Game over screen
+// Gameover and leaderboard screen open/close
 const leaderboardContainer2 = document.querySelector('.leaderboard-container2')
 const gameoverContainer = document.querySelector('.gameover-container')
 const closeGameover = document.querySelector('.close-gameover')
@@ -228,8 +228,7 @@ function closeLeaderboardContainer (){
   leaderboardButton.classList.remove("active")
 }
 
-
-// Form submission - name input to server to database
+// Form submission - name input => server => database
 const form = document.querySelector('form')
 const nameInput = document.querySelector("input[name='name']")
 const submitted = document.querySelector('.submitted')
@@ -253,7 +252,6 @@ form.addEventListener("submit", (event) => {
     submitted.style.display ='block'
   })
   .catch(error => {
-    // handle any errors here
     console.log(error)
   });
 });
@@ -264,10 +262,9 @@ const leaderboardButton = document.querySelector('.leaderboardButton')
 
 leaderboardButton.addEventListener('click', openLeaderboard)
 
-let page = currentPage
+let page = currentPage 
 
 async function openLeaderboard(){
-  
   await fetchList(currentPage)
 
   if (leaderboardButton.classList.contains("active")) {
@@ -280,17 +277,13 @@ async function openLeaderboard(){
     return
   }
 
-  
-  
-    leaderboardContainer.classList.toggle("showFlex");
-    leaderboardButton.classList.toggle("active")
-    leaderboardButton.style.scale = '85%'
-    setTimeout(() => {
-      leaderboardButton.style.removeProperty('scale')
-    }, 100);
-    // console.log(entries);
-  
-  
+  leaderboardContainer.classList.toggle("showFlex");
+  leaderboardButton.classList.toggle("active")
+  leaderboardButton.style.scale = '85%'
+  setTimeout(() => {
+    leaderboardButton.style.removeProperty('scale')
+  }, 100);
+  // console.log(entries);
 }
 
 // Pagination fetches
@@ -299,7 +292,6 @@ async function openLeaderboard(){
 // const nextButton = document.querySelector(".next");
 // // nextButton.style.display = currentPage < totalPages ? "inline" : "none";
 // const pageButtons = document.getElementsByClassName("page");
-
 
 
 // const itemsPerPage = 10;
