@@ -262,66 +262,22 @@ const leaderboardButton = document.querySelector('.leaderboardButton')
 
 leaderboardButton.addEventListener('click', openLeaderboard)
 
-let page = currentPage 
-
-async function openLeaderboard(){
-  await fetchList(currentPage)
-
-  if (leaderboardButton.classList.contains("active")) {
-    leaderboardContainer.classList.toggle("showFlex");
-    leaderboardButton.classList.toggle("active")
-    leaderboardButton.style.scale = '85%'
-    setTimeout(() => {
-      leaderboardButton.style.removeProperty('scale')
-    }, 100);
-    return
-  }
-
-  leaderboardContainer.classList.toggle("showFlex");
-  leaderboardButton.classList.toggle("active")
-  leaderboardButton.style.scale = '85%'
-  setTimeout(() => {
-    leaderboardButton.style.removeProperty('scale')
-  }, 100);
-  // console.log(entries);
-}
-
-// Pagination fetches
-// const previousButton = document.querySelector(".previous");
-// // previousButton.style.display = currentPage > 1 ? "inline" : "none";
-// const nextButton = document.querySelector(".next");
-// // nextButton.style.display = currentPage < totalPages ? "inline" : "none";
-// const pageButtons = document.getElementsByClassName("page");
-
-
-// const itemsPerPage = 10;
-// const totalPages = Math.ceil(items.length / itemsPerPage);
-// const maxPages = 10;
-// const currentPage = 1;
-
-// function getPage(){
-
-// }
 // The number of items to display per page
-var itemsPerPage = 10;
-
+let itemsPerPage = 10;
 // The total number of pages
-var totalPages = 10;
-
-// The maximum number of pages to display in the navigation
-var maxPages = 4;
-
+let totalPages = 10;
 // The current page
-var currentPage = 1;
+let currentPage = 1;
+let page = currentPage 
+// Pagination fetches
 
 // place this before update to get the correct page number
 const paginationButtons = document.querySelectorAll('.pagination')
 
-
-
+// Add fetch to all pagination buttons
 for (let i = 0; i < paginationButtons.length; i++) {
   paginationButtons[i].addEventListener("click", () => {
-    var page = paginationButtons[i].innerHTML;
+    let page = paginationButtons[i].innerHTML;
     if(page==='«'){
       page = currentPage-1
     } else if (page==='»'){
@@ -333,7 +289,7 @@ for (let i = 0; i < paginationButtons.length; i++) {
 
 // A function to update the display
 function updateDisplay() {
-  // Update the navigation
+  //previous/next show or hide at first/last page
   var previousButton = document.querySelector(".pagination.previous");
   previousButton.style.visibility = currentPage > 1 ? "visible" : "hidden";
   var nextButton = document.querySelector(".pagination.next");
@@ -350,6 +306,7 @@ function updateDisplay() {
     pagesToShow = [currentPage - 1, currentPage, currentPage + 1];
   }
 
+  // Highlight current page
   for (var i = 0; i < pagesToShow.length; i++) {
     var page = pagesToShow[i];
     if (page >= 1 && page <= totalPages) {
@@ -390,7 +347,7 @@ function goToPage(page) {
   }
 }
 
-// Attach the event listeners to the buttons
+// Attach the event listeners to the pagination buttons
 var previousButton = document.querySelector(".pagination.previous");
 previousButton.addEventListener("click", previousPage);
 var nextButton = document.querySelector(".pagination.next");
@@ -409,7 +366,27 @@ updateDisplay();
 
 // fetch with the buttons
 
+async function openLeaderboard(){
+  await fetchList(currentPage)
 
+  if (leaderboardButton.classList.contains("active")) {
+    leaderboardContainer.classList.toggle("showFlex");
+    leaderboardButton.classList.toggle("active")
+    leaderboardButton.style.scale = '85%'
+    setTimeout(() => {
+      leaderboardButton.style.removeProperty('scale')
+    }, 100);
+    return
+  }
+
+  leaderboardContainer.classList.toggle("showFlex");
+  leaderboardButton.classList.toggle("active")
+  leaderboardButton.style.scale = '85%'
+  setTimeout(() => {
+    leaderboardButton.style.removeProperty('scale')
+  }, 100);
+  // console.log(entries);
+}
 
 async function fetchList (currentPage) {
   await fetch(`/leaderboard/${currentPage}`)
@@ -441,10 +418,6 @@ async function fetchList (currentPage) {
         `;
       leaderboardTable.appendChild(tr);
       }
-
-      // if (i >= 10) {
-      //   return;
-      // }
     };
   })
   .catch(error => {

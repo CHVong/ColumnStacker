@@ -202,8 +202,9 @@ a, a:visited{
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 0.5rem;
+  padding-bottom: 0;
 }
 tbody tr{
   color: var(--primary-color);;
