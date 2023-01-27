@@ -1,10 +1,10 @@
 let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
-context.font = 'bold 30px sans-serif';
 let scrollCounter, cameraY, current, mode, xSpeed;
 let ySpeed = 5;
 let height = 50;
 let boxes = [];
+
 
 
 let debris = {
@@ -14,13 +14,14 @@ let debris = {
 
 // Set responsive screen size --------------------------------------------------
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    boxes[0] = {
-        x: (canvas.width / 2) - (canvas.width /4), //200 is the width of the box
-        y: 0,
-        width: (canvas.width / 2)
-      };
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  context.font = 'bold 100px sans-serif';
+  boxes[0] = {
+      x: (canvas.width / 2) - (canvas.width /4), //200 is the width of the box
+      y: 0,
+      width: (canvas.width / 2)
+    };
 }
 window.addEventListener("resize", resizeCanvas);
 // Call the function initially to set the canvas size on page load
@@ -44,13 +45,16 @@ function newBox() {
  
 function gameOver() {
   mode = 'gameOver';
-  context.fillText('Game over. Click to play again!', 50, 50);
+  context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.25);
+  context.textAlign = "center";
 }
  
 function animate() {
   if (mode != 'gameOver') {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillText('Score: ' + (current - 1).toString(), 100, 200);
+    context.font = 'bold 30px sans-serif';
+    context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, 200);
+    context.textAlign = "center";
     for (let n = 0; n < boxes.length; n++) {
       let box = boxes[n];
       context.fillStyle = gradient;//'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')'; style this for changing color with each box
