@@ -2,16 +2,17 @@ let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 context.font = 'bold 30px sans-serif';
 let scrollCounter, cameraY, current, mode, xSpeed;
-let ySpeed = 10;
+let ySpeed = 5;
 let height = 50;
 let boxes = [];
+
 
 let debris = {
   x: 0,
   width: 0
 };
 
-// Set responsive screen size
+// Set responsive screen size --------------------------------------------------
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -21,16 +22,22 @@ function resizeCanvas() {
         width: (canvas.width / 2)
       };
 }
-
 window.addEventListener("resize", resizeCanvas);
-  
 // Call the function initially to set the canvas size on page load
 resizeCanvas();
- 
+// -----------------------------------------------------------------------------
+
+// GRADIENT --------------------------------------------------------------------
+let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+gradient.addColorStop(0, "rgb(72,210,248, 0.8)");
+gradient.addColorStop(0.5, "rgb(11,65,46, 0.8)");
+// -----------------------------------------------------------------------------
+
+
 function newBox() {
   boxes[current] = {
     x: 0,
-    y: current * height,
+    y: (current+1) * height,
     width: boxes[current - 1].width
   };
 }
@@ -46,7 +53,7 @@ function animate() {
     context.fillText('Score: ' + (current - 1).toString(), 100, 200);
     for (let n = 0; n < boxes.length; n++) {
       let box = boxes[n];
-      context.fillStyle = 'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')';
+      context.fillStyle = gradient;//'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')'; style this for changing color with each box
       context.fillRect(box.x, 600 - box.y + cameraY, box.width, height);
     }
     context.fillStyle = 'red';
