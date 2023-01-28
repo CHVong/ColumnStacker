@@ -1,8 +1,6 @@
 *{
-    background-color: gray;
     margin: 0;
     box-sizing: border-box;
-
 }
 
 #myCanvas {
@@ -16,11 +14,9 @@
     background-position: center center;
 }
 
-h1{
+button{
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0);
-  
 }

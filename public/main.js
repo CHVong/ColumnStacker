@@ -14,8 +14,8 @@ let debris = {
 
 // Set responsive screen size --------------------------------------------------
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  context.canvas.width = window.innerWidth;
+  context.canvas.height = window.innerHeight;
   context.font = 'bold 100px sans-serif';
   boxes[0] = {
       x: (canvas.width / 2) - (canvas.width /4), //200 is the width of the box
@@ -118,12 +118,14 @@ function restart() {
   debris.y = 0;
 }
  
-canvas.onpointerdown = function() {
-  if (mode == 'gameOver')
+canvas.onpointerdown = function(event) {
+  if(event.button!==2){
+    if (mode == 'gameOver')
     restart();
-  else {
+    else {
     if (mode == 'bounce')
       mode = 'fall';
+    }
   }
 };
  
