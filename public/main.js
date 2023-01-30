@@ -53,15 +53,15 @@ function gameOver() {
   mode = 'gameOver';
   context.font = 'bold 30px "Varela Round", sans-serif';
   context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
-
   context.textAlign = "center";
+  
 }
  
 function animate() {
   if (mode != 'gameOver') {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.font = 'bold 40px "Varela Round", sans-serif';
-    context.fillStyle = '#22E68D';
+    context.font = 'bold 45px "Varela Round", sans-serif';
+    context.fillStyle = 'cyan';
     context.strokeStyle = "rgb(44, 45, 45)";
     context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
     context.lineWidth = 0.1;
@@ -76,8 +76,10 @@ function animate() {
       context.strokeRect(box.x, 600 - box.y + cameraY, box.width, height);
     }
     
-    context.fillStyle = 'red';
+    context.fillStyle = '#ff4040';
     context.fillRect(debris.x, 600 - debris.y + cameraY, debris.width, height);
+    context.strokeStyle = 'white';
+    context.strokeRect(debris.x, 600 - debris.y + cameraY, debris.width, height)
     if (mode == 'bounce') {
       boxes[current].x = boxes[current].x + xSpeed;
       if (xSpeed > 0 && boxes[current].x + boxes[current].width > canvas.width)
@@ -132,6 +134,8 @@ function restart() {
   current = 1;
   newBox();
   debris.y = 0;
+  debris.x = -1; //odd bug, stroke persist so set this for debris to fall offscreen upon restart
+  debris.width = 0;
 }
  
 canvas.onpointerdown = function(event) {

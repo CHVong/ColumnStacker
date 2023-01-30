@@ -83,7 +83,8 @@ body div{
     position: relative;
     z-index: 2;
     width: 20vw;
-    background: rgba(0,0,0,0.2);
+    color: lightblue;
+    background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
     padding: 10px;
     margin-left: 10px;
     border-radius: 5px;
@@ -106,7 +107,14 @@ display: block;
 
 a, a:visited{
     font-weight: bold;
-    color: blue;
+    color: cyan;
     text-decoration: none;
 
 }
+
+
+@media only screen and (max-width: 768px) {
+    #text-box{
+        width: 50vw;
+    }
+    }
