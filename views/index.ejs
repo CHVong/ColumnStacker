@@ -56,10 +56,10 @@
       <div class="close-leaderboard"><i class="fa-regular fa-circle-xmark fa-lg"></i></div>
       <h2>GAME OVER!</h2>
       <br>
-      <p>Your score is 10!<p>
+      <p class ='score'><p>
       <p>Click anywhere on the game's background to play again.</p>
       <p>Submit your name to be ranked on our leaderboard!</p>
-      <form action="#">
+      <form action="/leaderboard" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name"><br>
         <input type="submit" value="Submit">

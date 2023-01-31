@@ -212,6 +212,12 @@ tbody tr{
     right: 0;
     cursor: pointer;
     padding: 0.5rem;
+
+}
+
+.close-leaderboard i:hover{
+    scale: 90%;
+    transition: all 0.2s ease;
 }
 
 form{

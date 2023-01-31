@@ -1,27 +1,30 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const MongoClient = require('mongodb').MongoClient
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
+const leaderboard = require("./models/leaderboard");
 require('dotenv').config()
 const PORT = process.env.PORT || 8000
 
-let db,
-    dbConnectionString = process.env.DB_STRING,
-    dbName = 'leaderboard',
-    collection
-
-MongoClient.connect(dbConnectionString)
-    .then(client => {
-        console.log(`Connected to Database`)
-        db = client.db(dbName)
-        collection = db.collection('Leaderboard')
-    })
+mongoose.connect(
+     process.env.DB_CONNECTION, 
+    { useNewUrlParser: true, useUnifiedTopology: true }, 
+    () => {console.log("Connected to db!");}
+)
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('MongoDB connection established');
+});
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
+
+
 
 app.get('/', async (request, response) => {
     try {

@@ -50,10 +50,11 @@ function newBox() {
 }
  
 function gameOver() {
+  score.innerHTML = `Your score is ${current-1}!`
   gameoverContainer.style.display = 'flex'
   mode = 'gameOver';
   context.font = 'bold 30px "Varela Round", sans-serif';
-  context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
+  // context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
   context.textAlign = "center";
   
 }
@@ -229,6 +230,7 @@ infoButton.addEventListener("click", function () {
 
 let gameoverContainer = document.querySelector('.gameover-container')
 let closeLeaderboard = document.querySelector('.close-leaderboard')
+let score = document.querySelector('.score')
 
 closeLeaderboard.addEventListener('click', closeBoard)
 
