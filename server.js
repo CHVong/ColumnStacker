@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-const leaderboard = require("./models/leaderboard");
+const LeaderboardModel = require('./models/leaderboardmodel');
 require('dotenv').config()
 const PORT = process.env.PORT || 8000
 
@@ -33,6 +33,21 @@ app.get('/', async (request, response) => {
         response.status(500).send({message: error.message})
     }
 })
+
+app.post('/leaderboard', (req, res) => {
+    const leaderboard = new LeaderboardModel({
+      userName: req.body.userName,
+      score: req.body.score
+    });
+  
+    leaderboard.save()
+      .then(result => {
+        res.send(result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
 
 
 //PORT = 8050

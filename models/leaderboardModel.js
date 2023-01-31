@@ -9,4 +9,6 @@ score: {
     required: true
 }
 })
-module.exports = mongoose.model('leaderboard',leaderboardSchema,'Leaderboard');
+
+const LeaderboardModel = mongoose.model('leaderboard', leaderboardSchema, 'Leaderboard');
+module.exports = LeaderboardModel;
