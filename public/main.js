@@ -50,6 +50,7 @@ function newBox() {
 }
  
 function gameOver() {
+  gameoverContainer.style.display = 'flex'
   mode = 'gameOver';
   context.font = 'bold 30px "Varela Round", sans-serif';
   context.fillText('Game over. Click to play again!', canvas.width*0.5, canvas.height*0.4);
@@ -58,7 +59,9 @@ function gameOver() {
 }
  
 function animate() {
+  
   if (mode != 'gameOver') {
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.font = 'bold 45px "Varela Round", sans-serif';
     context.fillStyle = 'cyan';
@@ -140,8 +143,11 @@ function restart() {
  
 canvas.onpointerdown = function(event) {
   if(event.button!==2){
-    if (mode == 'gameOver')
-    restart();
+    if (mode == 'gameOver'){
+      gameoverContainer.style.display = 'none'
+      restart();
+    }
+    
     else {
     if (mode == 'bounce')
       mode = 'fall';
@@ -220,3 +226,12 @@ infoButton.addEventListener("click", function () {
 // textBox.addEventListener("click", function () {
 //   textBox.classList.add("hidden");
 // });
+
+let gameoverContainer = document.querySelector('.gameover-container')
+let closeLeaderboard = document.querySelector('.close-leaderboard')
+
+closeLeaderboard.addEventListener('click', closeBoard)
+
+function closeBoard (){
+  gameoverContainer.style.display = 'none'
+}
