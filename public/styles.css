@@ -40,11 +40,20 @@ input{
     margin: 0.5rem;
     opacity: 50%;
     transition: all 2s ease-out;
+    font-family: 'Varela Round', sans-serif;
 }
 
-input:hover{
+.slider:hover{
     opacity: 1;
     transition: all 0.2s ease-in;
+}
+
+#name{
+    opacity: 1;
+}
+
+.nameSubmission{
+    cursor: pointer;
 }
 
 .volume-container{
@@ -205,6 +214,9 @@ tbody tr{
     border-radius: 5px;
     text-align: center;
     display: none;
+    height: 300px;
+    max-height: 350px;
+    min-height: 300px;
 }
 
 .close-leaderboard{
@@ -222,4 +234,9 @@ tbody tr{
 
 form{
     padding: 1rem;
+
+}
+
+.submitted{
+    display: none;
 }

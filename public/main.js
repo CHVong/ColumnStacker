@@ -256,8 +256,18 @@ document.querySelector("form").addEventListener("submit", function(event) {
   })
     .then(response => {
       // handle the response from the server here
+      form.style.display = 'none'
+      submitted.style.display ='block'
+      
     })
     .catch(error => {
       // handle any errors here
     });
 });
+
+
+let submitted = document.querySelector('.submitted')
+
+let form = document.querySelector('form')
+
+let leaderboardContainer = document.querySelector('leaderboard-container2')
