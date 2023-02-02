@@ -27,8 +27,16 @@ app.use(cors())
 
 
 app.get('/', async (request, response) => {
-    try {
-        response.render('index.ejs')
+  try {
+    LeaderboardModel.find({})
+    .sort({ score: -1 })
+    .exec((err, entries) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      response.render("index.ejs", { entries });
+    });
     } catch (error) {
         response.status(500).send({message: error.message})
     }
@@ -49,7 +57,19 @@ app.post('/leaderboard', (req, res) => {
       });
   });
 
+app.get("/leaderboard", (req, res) => {
+  LeaderboardModel.find({})
+    .sort({ score: -1 })
+    .exec((err, entries) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      res.json({ entries });
+    });
+});
 
+  
 //PORT = 8050
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

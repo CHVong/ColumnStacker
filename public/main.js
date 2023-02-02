@@ -278,11 +278,38 @@ leaderboardButton.addEventListener('click', openLeaderboard)
 
 function openLeaderboard(){
 
-  
-  leaderboardContainer.classList.toggle("showFlex");
+  fetch("/leaderboard")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then(result => {
+    const entries = result.entries;
+
+    
+      const leaderboardTable = document.querySelector('.leaderboard tbody');
+    entries.forEach((entry, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${entry.userName}</td>
+            <td>${entry.score}</td>
+        `;
+        leaderboardTable.appendChild(tr);
+    });
+
+    leaderboardContainer.classList.toggle("showFlex");
   leaderboardButton.classList.toggle("active")
   leaderboardButton.style.scale = '85%'
     setTimeout(function () {
       leaderboardButton.style.removeProperty('scale')
   }, 100);
+    console.log(data);
+  })
+  .catch(error => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
+  
 }
