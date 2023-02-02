@@ -290,6 +290,8 @@ function openLeaderboard(){
 
     
       const leaderboardTable = document.querySelector('.leaderboard tbody');
+      leaderboardTable.innerHTML = '';
+      // document.querySelector('.leaderboard tbody').innerHTML = ''
     entries.forEach((entry, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
