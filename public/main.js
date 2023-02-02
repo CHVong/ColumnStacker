@@ -270,4 +270,19 @@ let submitted = document.querySelector('.submitted')
 
 let form = document.querySelector('form')
 
-let leaderboardContainer = document.querySelector('leaderboard-container2')
+let leaderboardContainer = document.querySelector('.leaderboard-container2')
+
+let leaderboardButton = document.querySelector('.leaderboardButton')
+
+leaderboardButton.addEventListener('click', openLeaderboard)
+
+function openLeaderboard(){
+
+  
+  leaderboardContainer.classList.toggle("showFlex");
+  leaderboardButton.classList.toggle("active")
+  leaderboardButton.style.scale = '85%'
+    setTimeout(function () {
+      leaderboardButton.style.removeProperty('scale')
+  }, 100);
+}

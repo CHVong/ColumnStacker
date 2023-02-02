@@ -110,6 +110,10 @@ display: block;
     display: block !important;
 }
 
+.showFlex{
+    display: flex !important;
+}
+
 .active{
     background: rgba(0,0,0,0.5) !important;
 }
