@@ -308,7 +308,7 @@ function openLeaderboard(){
     setTimeout(function () {
       leaderboardButton.style.removeProperty('scale')
   }, 100);
-    console.log(data);
+    // console.log(entries);
   })
   .catch(error => {
     console.error("There was a problem with the fetch operation:", error);
