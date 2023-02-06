@@ -333,36 +333,52 @@ var maxPages = 4;
 // The current page
 var currentPage = 1;
 
+// place this before update to get the correct page number
+const paginationButtons = document.querySelectorAll('.pagination')
+
+for (let i = 0; i < paginationButtons.length; i++) {
+  paginationButtons[i].addEventListener("click", () => {
+    var page = paginationButtons[i].innerHTML;
+    if(page==='«'){
+      page = currentPage-1
+    } else if (page==='»'){
+      page = currentPage+1
+    }
+    fetchList(page);
+  });
+}
+
 // A function to update the display
 function updateDisplay() {
   // Update the navigation
   var previousButton = document.querySelector(".pagination.previous");
-  previousButton.style.display = "inline";
+  previousButton.style.visibility = currentPage > 1 ? "visible" : "hidden";
   var nextButton = document.querySelector(".pagination.next");
-  nextButton.style.display = "inline";
+  nextButton.style.visibility = currentPage < totalPages ? "visible" : "hidden";
   var pageButtons = document.querySelectorAll(".pagination.page");
-  
-  var start = currentPage;
-  if (currentPage > totalPages - 2 && currentPage <= totalPages) {
-    start = totalPages - 2;
-  } else if (currentPage > 1 && currentPage < 4) {
-    start = 1;
+
+  // Show previous, current, and next page
+  var pagesToShow = [];
+  if (currentPage === 1) {
+    pagesToShow = [currentPage, currentPage + 1, currentPage + 2];
+  } else if (currentPage === totalPages) {
+    pagesToShow = [currentPage - 2, currentPage - 1, currentPage];
+  } else {
+    pagesToShow = [currentPage - 1, currentPage, currentPage + 1];
   }
-  
-  for (var i = 0; i < pageButtons.length; i++) {
-    var pageButton = pageButtons[i];
-    var page = start + i;
-    
-    if (page >= 1 && page <= totalPages && i < 3) {
-      pageButton.style.display = "inline";
-      pageButton.innerHTML = page;
-      if (page == currentPage) {
-        pageButton.classList.add("active");
+
+  for (var i = 0; i < pagesToShow.length; i++) {
+    var page = pagesToShow[i];
+    if (page >= 1 && page <= totalPages) {
+      pageButtons[i].style.visibility = "visible";
+      pageButtons[i].innerHTML = page;
+      if (page === currentPage) {
+        pageButtons[i].classList.add("active");
       } else {
-        pageButton.classList.remove("active");
+        pageButtons[i].classList.remove("active");
       }
     } else {
-      pageButton.style.display = "none";
+      pageButtons[i].style.visibility = "hidden";
     }
   }
 }
@@ -406,3 +422,38 @@ for (var i = 0; i < pageButtons.length; i++) {
 
 // Initialize the display
 updateDisplay();
+
+
+// fetch with the buttons
+
+
+
+function fetchList (page) {
+  fetch(`/leaderboard/${page}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then(result => {
+    const entries = result.entries;
+    const leaderboardTable = document.querySelector('.leaderboard tbody');
+    leaderboardTable.innerHTML = '';
+    entries.forEach((entry, index) => {
+      if (index >= 10) {
+        return;
+      }
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${entry.userName}</td>
+          <td>${entry.score}</td>
+      `;
+      leaderboardTable.appendChild(tr);
+    });
+  })
+  .catch(error => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
+}

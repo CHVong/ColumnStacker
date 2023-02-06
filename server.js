@@ -67,6 +67,25 @@ app.get("/leaderboard", (req, res) => {
     });
 });
 
+app.get("/leaderboard/:page", (req, res) => {
+  const page = parseInt(req.params.page) || 1;
+  const perPage = 10;
+  const skip = (page - 1) * perPage;
+  
+  LeaderboardModel.find({})
+    .sort({ score: -1 })
+    .skip(skip)
+    .limit(perPage)
+    .exec((err, entries) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      res.json({ entries });
+    });
+});
+
+
 //PORT = 8050
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
