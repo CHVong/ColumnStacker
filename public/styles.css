@@ -172,7 +172,7 @@ a, a:visited{
   background-color: #ddd;
 }
 
-.pagination {
+.paginationContainer {
     position: relative;
   display: flex;
   justify-content: center;
@@ -181,7 +181,7 @@ a, a:visited{
 tbody tr{
     color: lightblue;
 }
-.pagination a {
+.paginationContainer a {
   color: lightblue;
   float: left;
   padding: 8px 16px;
@@ -191,12 +191,12 @@ tbody tr{
   margin: 0 4px;
 }
 
-.pagination a.active {
+.paginationContainer a.active {
   background-color: #ddd;
   color: white;
 }
 
-.pagination a:hover:not(.active) {
+.paginationContainer a:hover:not(.active) {
   background-color: #ddd;
 }
 

@@ -305,17 +305,104 @@ function openLeaderboard(){
 }
 
 // Pagination fetches
-const previousButton = document.querySelector(".previous");
-// previousButton.style.display = currentPage > 1 ? "inline" : "none";
-const nextButton = document.querySelector(".next");
-// nextButton.style.display = currentPage < totalPages ? "inline" : "none";
-const pageButtons = document.getElementsByClassName("page");
+// const previousButton = document.querySelector(".previous");
+// // previousButton.style.display = currentPage > 1 ? "inline" : "none";
+// const nextButton = document.querySelector(".next");
+// // nextButton.style.display = currentPage < totalPages ? "inline" : "none";
+// const pageButtons = document.getElementsByClassName("page");
 
-const itemsPerPage = 10;
-const totalPages = Math.ceil(items.length / itemsPerPage);
-const maxPages = 10;
-const currentPage = 1;
 
-function getPage(){
 
+// const itemsPerPage = 10;
+// const totalPages = Math.ceil(items.length / itemsPerPage);
+// const maxPages = 10;
+// const currentPage = 1;
+
+// function getPage(){
+
+// }
+// The number of items to display per page
+var itemsPerPage = 10;
+
+// The total number of pages
+var totalPages = 10;
+
+// The maximum number of pages to display in the navigation
+var maxPages = 4;
+
+// The current page
+var currentPage = 1;
+
+// A function to update the display
+function updateDisplay() {
+  // Update the navigation
+  var previousButton = document.querySelector(".pagination.previous");
+  previousButton.style.display = "inline";
+  var nextButton = document.querySelector(".pagination.next");
+  nextButton.style.display = "inline";
+  var pageButtons = document.querySelectorAll(".pagination.page");
+  
+  var start = currentPage;
+  if (currentPage > totalPages - 2 && currentPage <= totalPages) {
+    start = totalPages - 2;
+  } else if (currentPage > 1 && currentPage < 4) {
+    start = 1;
+  }
+  
+  for (var i = 0; i < pageButtons.length; i++) {
+    var pageButton = pageButtons[i];
+    var page = start + i;
+    
+    if (page >= 1 && page <= totalPages && i < 3) {
+      pageButton.style.display = "inline";
+      pageButton.innerHTML = page;
+      if (page == currentPage) {
+        pageButton.classList.add("active");
+      } else {
+        pageButton.classList.remove("active");
+      }
+    } else {
+      pageButton.style.display = "none";
+    }
+  }
 }
+
+// A function to go to the previous page
+function previousPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    updateDisplay();
+  }
+}
+
+// A function to go to the next page
+function nextPage() {
+  if (currentPage < totalPages) {
+    currentPage++;
+    updateDisplay();
+  }
+}
+
+// A function to go to a specific page
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages) {
+    currentPage = page;
+    updateDisplay();
+  }
+}
+
+// Attach the event listeners to the buttons
+var previousButton = document.querySelector(".pagination.previous");
+previousButton.addEventListener("click", previousPage);
+var nextButton = document.querySelector(".pagination.next");
+nextButton.addEventListener("click", nextPage);
+var pageButtons = document.querySelectorAll(".pagination.page");
+for (var i = 0; i < pageButtons.length; i++) {
+  var pageButton = pageButtons[i];
+  pageButton.addEventListener("click", function() {
+    goToPage(parseInt(this.innerHTML));
+  });
+}
+
+// Initialize the display
+updateDisplay();
