@@ -258,3 +258,29 @@ form{
   .pagination[style*="display: none"] {
     opacity: 0;
   }
+
+  .leaderboard td:first-child,
+.leaderboard td:nth-child(3) {
+  width: 80px;
+  text-align: center;
+}
+
+.leaderboard td:nth-child(2) {
+    max-width: 150px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaderboard th:first-child,
+.leaderboard th:nth-child(3) {
+  
+  text-align: center;
+}
+
+.leaderboard th:nth-child(2) {
+   
+  text-align: left;
+  
+}

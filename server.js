@@ -40,14 +40,15 @@ app.get('/', async (request, response) => {
   }
 })
 
-app.post('/leaderboard', (req, res) => {
+app.post('/leaderboard', async (req, res) => {
   const leaderboard = new LeaderboardModel({
     userName: req.body.userName,
     score: req.body.score
   });
 
-  return leaderboard.save()
+  return await leaderboard.save()
     .then(result => {
+      res.header("Access-Control-Allow-Origin", "*");
       res.send(result);
     })
     .catch(error => {

@@ -256,7 +256,10 @@ leaderboardButton.addEventListener('click', openLeaderboard)
 
 let page = currentPage
 
-function openLeaderboard(){
+async function openLeaderboard(){
+  
+  await fetchList(currentPage)
+
   if (leaderboardButton.classList.contains("active")) {
     leaderboardContainer.classList.toggle("showFlex");
     leaderboardButton.classList.toggle("active")
@@ -267,7 +270,7 @@ function openLeaderboard(){
     return
   }
 
-  fetchList(currentPage)
+  
   
     leaderboardContainer.classList.toggle("showFlex");
     leaderboardButton.classList.toggle("active")
@@ -406,8 +409,8 @@ updateDisplay();
 
 
 
-function fetchList (currentPage) {
-  fetch(`/leaderboard/${currentPage}`)
+async function fetchList (currentPage) {
+  await fetch(`/leaderboard/${currentPage}`)
   .then(response => {
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -418,18 +421,29 @@ function fetchList (currentPage) {
     const entries = result.entries;
     const leaderboardTable = document.querySelector('.leaderboard tbody');
     leaderboardTable.innerHTML = '';
-    entries.forEach((entry, index) => {
-      if (index >= 10) {
+    for(let i = 0; i<10; i++){
+      const tr = document.createElement('tr');
+
+      if(entries[i]){
+        tr.innerHTML = `
+        <td>${currentPage>1?(currentPage-1)*10 + i+1:i+1}</td>
+        <td>${entries[i].userName}</td>
+        <td>${entries[i].score}</td>
+        `;
+      leaderboardTable.appendChild(tr);
+      } else {
+        tr.innerHTML = `
+          <td>${currentPage>1?(currentPage-1)*10 + i+1:i+1}</td>
+          <td></td>
+          <td></td>
+        `;
+      leaderboardTable.appendChild(tr);
+      }
+
+      if (i >= 10) {
         return;
       }
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-          <td>${currentPage>1?(currentPage-1)*10 + index+1:index+1}</td>
-          <td>${entry.userName}</td>
-          <td>${entry.score}</td>
-      `;
-      leaderboardTable.appendChild(tr);
-    });
+    };
   })
   .catch(error => {
     console.error("There was a problem with the fetch operation:", error);
