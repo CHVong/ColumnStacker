@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
+const Filter = require('bad-words');
 const LeaderboardModel = require('./models/leaderboardmodel');
 require('dotenv').config()
 const PORT = process.env.PORT || 8050
@@ -41,8 +42,13 @@ app.get('/', async (request, response) => {
 })
 
 app.post('/leaderboard', async (req, res) => {
+  const filter = new Filter();
+  const filteredUserName = filter.clean(req.body.userName)
+  console.log(req.body.userName)
+  console.log(filter.clean(req.body.userName))
+
   const leaderboard = new LeaderboardModel({
-    userName: req.body.userName,
+    userName: filteredUserName,
     score: req.body.score
   });
 

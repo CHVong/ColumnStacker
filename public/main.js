@@ -133,7 +133,7 @@ function restart() {
   current = 1;
   newBox();
   debris.y = 0;
-  debris.x = -1; //odd bug, stroke persist so set this for debris to fall offscreen upon restart
+  debris.x = -1; //odd bug, stroke persists, so set this for debris to fall offscreen upon restart
   debris.width = 0;
 }
  
@@ -164,7 +164,7 @@ volumeSlider.addEventListener("input", adjustVolume);
 volumeButton.addEventListener('click', playMusic)
 
 let audio = new Audio("./assets/Yum_Yum_Island_ Illiyard_Moor.mp3")
-audio.loop = true // set for music to loop
+audio.loop = true
 audio.volume = 0.20
 
 function adjustVolume() {
@@ -440,9 +440,9 @@ async function fetchList (currentPage) {
       leaderboardTable.appendChild(tr);
       }
 
-      if (i >= 10) {
-        return;
-      }
+      // if (i >= 10) {
+      //   return;
+      // }
     };
   })
   .catch(error => {
