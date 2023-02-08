@@ -141,6 +141,8 @@ canvas.onpointerdown = (event) => {
   if(event.button!==2){ //set for left clicks
     if (mode == 'gameOver'){
       gameoverContainer.style.display = 'none'
+      form.style.display = 'block'
+      submitted.style.display ='none'
       restart();
     }
     
@@ -208,14 +210,21 @@ infoButton.addEventListener("click", () => {
 });
 
 // Game over screen
+const leaderboardContainer2 = document.querySelector('.leaderboard-container2')
 const gameoverContainer = document.querySelector('.gameover-container')
+const closeGameover = document.querySelector('.close-gameover')
 const closeLeaderboard = document.querySelector('.close-leaderboard')
 const score = document.querySelector('.score')
 
-closeLeaderboard.addEventListener('click', closeBoard)
+closeGameover.addEventListener('click', closeGameoverContainer)
+closeLeaderboard.addEventListener('click', closeLeaderboardContainer)
 
-function closeBoard (){
+function closeGameoverContainer (){
   gameoverContainer.style.display = 'none'
+}
+
+function closeLeaderboardContainer (){
+  leaderboardContainer2.classList.remove('showFlex')
 }
 
 

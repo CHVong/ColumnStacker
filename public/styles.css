@@ -139,9 +139,7 @@ display: block;
     display: block !important;
 }
 
-.showFlex{
-    display: flex !important;
-}
+
 
 .active{
     background: rgba(0,0,0,0.5) !important;
@@ -149,7 +147,7 @@ display: block;
 
 a, a:visited{
     font-weight: bold;
-    color: cyan;
+    color: #59bcff;
     text-decoration: none;
 
 }
@@ -165,22 +163,25 @@ a, a:visited{
 /* LEADERBOARD */
 
 .leaderboard-container2 {
-    
+  border-radius: 5px;
   max-width: 500px;
   min-width: 300px;
   width: 50vw;
   margin: 0 auto;
   position: absolute;
-    left: 50%;
-    top: 40%;
-    display: flex;
-    flex-direction: column;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
-    border-radius: 5px;
-    display: none;
+  left: 50%;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
+  border-radius: 5px;
+  display: none;
+  padding: 2rem;
 }
-
+.showFlex{
+  display: flex;
+}
 
 .leaderboard {
     position: relative;
@@ -190,20 +191,23 @@ a, a:visited{
 
 .leaderboard th,
 .leaderboard td {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 8px;
   text-align: left;
 }
 
 .leaderboard th {
-  background-color: #ddd;
+  /* background-color: #ddd; */
+  color: var(--primary-color);
+  border-bottom: 2px solid;
 }
 
 .paginationContainer {
     position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding: 0.5rem;
 }
 tbody tr{
     color: var(--primary-color);;
@@ -213,20 +217,24 @@ tbody tr{
   float: left;
   padding: 0.5rem;
   text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
+  transition: background-color, box-shadow .3s;
+  /* border: 2px solid #ddd; */
   margin: 0 4px;
   text-align: center;
   min-width: 40px;
+  border-radius: 15%;
 }
 
 .paginationContainer a.active {
-  background-color: #ddd;
-  color: white;
+  /* background-color: rgb(255 255 255 / 90%) !important; */
+  color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+  background-color: black;
 }
 
 .paginationContainer a:hover:not(.active) {
-  background-color: #ddd;
+  color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
 }
 
 
@@ -253,15 +261,15 @@ tbody tr{
     min-height: 250px;
 }
 
-.close-leaderboard{
+.close{
     top: 0;
     right: 0;
     cursor: pointer;
     padding: 0.5rem;
-
+    color: var(--primary-color);
 }
 
-.close-leaderboard i:hover{
+.close i:hover{
     scale: 90%;
     transition: all 0.2s ease;
     color: #FF6347;
@@ -294,7 +302,7 @@ form{
 }
 
 .leaderboard td:nth-child(2) {
-    max-width: 150px;
+    max-width: 120px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
