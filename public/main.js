@@ -225,6 +225,7 @@ function closeGameoverContainer (){
 
 function closeLeaderboardContainer (){
   leaderboardContainer2.classList.remove('showFlex')
+  leaderboardButton.classList.remove("active")
 }
 
 
