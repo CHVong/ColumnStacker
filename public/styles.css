@@ -269,7 +269,7 @@ tbody tr{
     color: var(--primary-color);
 }
 
-.close i:hover{
+.close:hover{
     scale: 90%;
     transition: all 0.2s ease;
     color: #FF6347;
