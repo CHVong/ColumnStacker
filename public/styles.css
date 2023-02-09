@@ -1,5 +1,6 @@
 :root {
   --primary-color: #add8f5;
+  --primary-gradient: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.7));
 }
 
 *{
@@ -119,8 +120,8 @@ body div{
   position: relative;
   z-index: 2;
   width: 20vw;
-  color: var(--primary-color);;
-  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
+  color: var(--primary-color);
+  background: var(--primary-gradient);
   padding: 10px;
   margin-left: 10px;
   border-radius: 5px;
@@ -170,8 +171,8 @@ a, a:visited{
   display: flex;
   flex-direction: column;
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
-  border-radius: 5px;
+  background: var(--primary-gradient);
+  border-radius: 8px;
   display: none;
   padding: 2rem;
 }
@@ -250,7 +251,7 @@ tbody tr{
   display: flex;
   flex-direction: column;
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.6));
+  background: var(--primary-gradient);
   border-radius: 5px;
   text-align: center;
   display: none;
