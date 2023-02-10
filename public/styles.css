@@ -318,3 +318,7 @@ form{
   text-align: left;
   
 }
+
+span{
+  text-decoration: underline;
+}
