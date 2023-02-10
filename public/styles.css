@@ -320,5 +320,9 @@ form{
 }
 
 span{
+  font-weight: bold;
+}
+
+.githubLink{
   text-decoration: underline;
 }

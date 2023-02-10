@@ -63,7 +63,7 @@ function animate() {
     context.fillStyle = 'cyan';
     context.strokeStyle = "rgb(44, 45, 45)";
     context.fillText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
-    context.lineWidth = 0.1;
+    context.lineWidth = 0.75;
     context.strokeText('Score: ' + (current - 1).toString(), canvas.width*0.5, canvas.height*0.25);
     context.textAlign = "center";
     for (let n = 0; n < boxes.length; n++) {
@@ -155,6 +155,10 @@ canvas.onpointerdown = (event) => {
 
 window.addEventListener('keypress', function (event) {
   if (event.code === "Space") { //set for space
+    event.preventDefault();
+    leaderboardButton.blur(); //NEED BLUR FOR BUG FIX. Bug:after clicking/focus on button then pressing spacebar will toggle the event listeners.
+    infoButton.blur();
+    volumeButton.blur();
     if (mode == 'gameOver'){
       gameoverContainer.style.display = 'none'
       form.style.display = 'block'
@@ -167,7 +171,7 @@ window.addEventListener('keypress', function (event) {
       mode = 'fall';
     }
   }
-}, false);
+});
 
 
 restart();
