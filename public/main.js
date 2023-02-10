@@ -136,9 +136,9 @@ function restart() {
   debris.x = -1; //odd bug, stroke persists, so set this for debris to fall offscreen upon restart
   debris.width = 0;
 }
- 
+
 canvas.onpointerdown = (event) => {
-  if(event.button!==2){ //set for left clicks
+  if(event.button!==2 || event.keyCode === 32){ //set for left clicks
     if (mode == 'gameOver'){
       gameoverContainer.style.display = 'none'
       form.style.display = 'block'
@@ -152,7 +152,24 @@ canvas.onpointerdown = (event) => {
     }
   }
 };
- 
+
+window.addEventListener('keypress', function (event) {
+  if (event.code === "Space") { //set for space
+    if (mode == 'gameOver'){
+      gameoverContainer.style.display = 'none'
+      form.style.display = 'block'
+      submitted.style.display ='none'
+      restart();
+    }
+    
+    else {
+    if (mode == 'bounce')
+      mode = 'fall';
+    }
+  }
+}, false);
+
+
 restart();
 animate();
 
