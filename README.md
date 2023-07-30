@@ -7,9 +7,8 @@ Column Stacker is a game that challenges players to stack as many columns as pos
 How high can you stack? https://column-stacker.cyclic.app
 
 <div align="center" >
-<img src="https://github.com/BrunchWithYou/ColumnStacker/assets/84001929/a3c8c4ce-181a-4732-84dd-c2748108d91a" alt="InfiniteGraph Logo" width="650">
+<img src="https://user-images.githubusercontent.com/84001929/256657649-a3c8c4ce-181a-4732-84dd-c2748108d91a.gif" alt="InfiniteGraph Logo" width="650">
 </div>
-
 
 ## Gameplay
 
@@ -32,5 +31,3 @@ How high can you stack? https://column-stacker.cyclic.app
 - Backend: Node.js, Express.js
 - Database: MongoDB with Mongoose
 - Hosting: Cyclic
-
-
