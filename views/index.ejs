@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Column Stacker</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" type="image/x-icon" href="./assets/stackIcon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/stackIcon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="volume-container">
-        <button class="volume"><i id="volumeSymbol" class="fa-solid fa-volume-xmark fa-xl"></i></button>
-        <input class="hidden slider" type="range" min="0" max="1" step="0.01" value="0.2" id="volume-slider">
+      <button class="volume">
+        <i id="volumeSymbol" class="fa-solid fa-volume-xmark fa-xl"></i>
+      </button>
+      <input
+        class="hidden slider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.2"
+        id="volume-slider"
+      />
     </div>
     <div class="info-container">
-        <button class="info"><i class="fa-solid fa-circle-question fa-xl"></i></button>
-        <div id="text-box"><span>Left click</span> or <span>space</span> to stack!<br><br>Column Stacker is a game that was created using the Javascript Canvas API. The backend is done with NodeJS and ExpressJS. Submit your name at the end to see how you rank on the leaderboard. Rankings will be pulled from our MongoDB database. You can find the code repo by clicking <a href="https://github.com/BrunchWithYou/ColumnStacker" class="githubLink" target="_blank">HERE!</a></div>
-
+      <button class="info"><i class="fa-solid fa-circle-question fa-xl"></i></button>
+      <div id="text-box">
+        <span>Left click</span> or <span>space</span> to stack!<br /><br />Column Stacker is a game
+        that was created using the Javascript Canvas API. The backend is done with NodeJS and
+        ExpressJS. Submit your name at the end to see how you rank on the leaderboard. Rankings will
+        be pulled from our MongoDB database. You can find the code repo by clicking
+        <a href="https://github.com/CHVong/ColumnStacker" class="githubLink" target="_blank"
+          >HERE!</a
+        >
+      </div>
     </div>
     <div class="leaderboard-container">
-        <button class="leaderboardButton"><i class="fa-solid fa-ranking-star fa-xl"></i></button>
+      <button class="leaderboardButton"><i class="fa-solid fa-ranking-star fa-xl"></i></button>
     </div>
 
     <div class="leaderboard-container2">
@@ -58,20 +78,31 @@
     <div class="gameover-container">
       <div class="close-gameover close"><i class="fa-regular fa-circle-xmark fa-lg"></i></div>
       <h2>GAME OVER!</h2>
-      <br>
-      <p class ='score'><p>
-      <p style="margin:1rem">Press <span style="font-style: italic;">space</span> or <span style="font-style: italic;">click</span> anywhere on the background to play again.</p>
+      <br />
+      <p class="score"></p>
+      <p></p>
+      <p style="margin: 1rem">
+        Press <span style="font-style: italic">space</span> or
+        <span style="font-style: italic">click</span> anywhere on the background to play again.
+      </p>
       <p>Submit your name to be ranked on our leaderboard!</p>
       <form action="/leaderboard" method="POST">
         <!-- <label for="name">Name:</label> -->
-        <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off"><br>
-        <input type="submit" class="nameSubmission" value="Submit">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Name"
+          autocomplete="off"
+        /><br />
+        <input type="submit" class="nameSubmission" value="Submit" />
       </form>
       <h2 class="submitted">SUBMITTED!</h2>
     </div>
     <canvas id="myCanvas"></canvas>
-    
-<script src='/main.js'></script>
-<script src="https://kit.fontawesome.com/4a006a16d5.js" crossorigin="anonymous"></script>
-</body>
+
+    <script src="/main.js"></script>
+    <script src="https://kit.fontawesome.com/4a006a16d5.js" crossorigin="anonymous"></script>
+  </body>
 </html>
